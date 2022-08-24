@@ -1,0 +1,40 @@
+<div class="home-body">
+    <p>/n</p>
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <!-- Display Posts-->
+          <div class="row post" *ngFor="let message of messages.reverse()">
+            <div class="container" *ngIf="message.senderName !== username">
+                <p class="textright">{{message.content.text}}</p>
+                <span class="time-left">{{message.dateTime | date: 'medium'}}</span>
+            </div>
+            <div class="container darker" *ngIf="message.senderName === username">
+                <p class="textleft">{{message.content.text}}</p>
+                <span class="time-right">{{message.dateTime | date: 'medium'}}</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="text-align: center">
+            <button class="pagebtn" (click)="goToPreviousPage()">
+              Previous Page
+            </button>
+            <button class="pagebtn" (click)="goToNextPage()">
+              Next Page
+            </button>
+          </div>
+        </div>
+        <div class="post-message">
+          <form [formGroup]="messageForm">
+            <div>
+              <textarea [formControlName]="'text'" placeholder="Write A Message"></textarea>
+            </div>
+            <button class="btnCommments" (click)="postMessage()">Send Message</button>
+          </form>
+        </div>
+        </div>
+      </div>
+    </div>
+  

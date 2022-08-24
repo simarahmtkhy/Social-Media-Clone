@@ -1,0 +1,47 @@
+<div>
+  <p>
+    <br>
+  </p>
+  <div class="row">
+    <div class="col-md-9">
+      <!-- Display Posts-->
+      <div class="row post" *ngFor="let post of posts">
+        <app-post [post]="post"></app-post>
+      </div>
+      <div *ngIf="noPosts()">
+        <br>
+        No Posts!
+      </div>
+    </div>
+    <div class="col-md-3">
+        <div class="sidebar">
+          <div style="text-align: center; font-size: 1em">
+          {{username}} 
+          <p>
+          </p>
+          <button class="follow" *ngIf="!isFollower && !sentRequest"  (click) = "follow()">
+            Follow
+          </button>
+          <button class="follow" *ngIf="isFollower" (click) = "unfollow()">
+            Unfollow
+          </button>
+          <button class="follow" *ngIf="sentRequest" (click) = "cancelReq()">
+            Cancel Request
+          </button>
+          <button class="follow" *ngIf="isFollower" (click) = "getMessages()">
+            See Your Chat With {{username}}
+          </button>
+        </div>  
+    </div>
+    <div class="sidebaroptions">
+        <div style="text-align: center">
+          <button class="pagebtn" (click)="goToPreviousPage()">
+            Previous Page
+          </button>
+          <button class="pagebtn" (click)="goToNextPage()">
+            Next Page
+          </button>
+        </div>
+    </div>
+</div>
+

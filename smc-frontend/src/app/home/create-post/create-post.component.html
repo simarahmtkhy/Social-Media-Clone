@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+      <hr />
+      <div class="create-post-container col-md-9">
+        <form class="post-form" [formGroup]="createPostForm">
+          <div class="form-group">
+            <div class="create-post-heading">Create Post</div>
+            <hr />
+            <input type="text" [formControlName]="'text'" class="form-control" style="margin-top: 5px"
+              placeholder="Text" (input)="reset()">
+            <input #fileInput type="file" class="file-upload" (change)= "uploadFile($event)" >   
+            <span>
+              <div style="margin-top: 5px" class="float-right">
+                <button class="btnDiscard" routerLink="/home"> Discard</button>
+                <button class="btnCreatePost" (click)="createPost()">Post</button>
+              </div>
+            </span>
+          </div>
+        </form>
+        <div *ngIf="temp">
+          <div class="col-md-11">
+            <p>
+              Post Has Been Created Successfully!
+            </p>
+            <div class="user-name">
+              <a class="username">{{postModelTemp.username}}</a>
+            </div>
+            <div>
+              <p>{{postModelTemp.date | date: 'medium'}}</p>
+              <p class="post-text">{{postModelTemp.body.text}}</p>
+              <img *ngIf="postModelTemp.body.image !== null" src= {{postModelTemp.body.image}} width="320" height="240">
+              <video *ngIf="postModelTemp.body.video !== null" width="320" height="240" controls>
+                <source src={{postModelTemp.body.video}}>
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

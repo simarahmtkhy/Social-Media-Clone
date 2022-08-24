@@ -1,0 +1,39 @@
+<div class="row">
+  <p>
+    <br>
+  </p>
+    <div class="col-md-9">
+      <!-- Display Posts-->
+      <div class="row post" *ngFor="let post of posts">
+        <app-post [post]="post"></app-post>
+      </div>
+      <div *ngIf="noPosts()">
+        <br>
+        No Posts!
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="sidebaroptions">
+        <div style="text-align: center">
+          <button class="pagebtn" (click)="goToPreviousPage()">
+            Previous Page
+          </button>
+          <button class="pagebtn" (click)="goToNextPage()">
+            Next Page
+          </button>
+        </div>
+      </div>
+      <div>
+        <button *ngIf="!showRequestsField" class="showbtn"(click)="showRequests()">Show Follow Requests
+        </button>
+        <button *ngIf="showRequestsField" class="showbtn"(click)="showRequests()">Hide Follow Requests
+        </button>
+      </div>
+      <div class="requests" *ngIf="showRequestsField">
+        <app-req></app-req>
+      </div>
+
+    </div>
+
+
+  </div>

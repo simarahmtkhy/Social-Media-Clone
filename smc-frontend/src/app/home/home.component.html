@@ -1,0 +1,61 @@
+<div class="home-body">
+  <p>/n</p>
+  <div *ngIf="isError">
+    <p>
+      Please Log In To Proceed
+    </p>
+  </div>
+  <div class="container" *ngIf="isError === false">
+    <div class="row">
+      <div class="col-md-9">
+        <!-- Display Posts-->
+        <div class="row post" *ngFor="let post of posts">
+          <app-post [post]="post"></app-post>
+        </div>
+        <div *ngIf="noPosts()">
+          <p>
+            <br>
+            No posts!
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="sidebar">
+          <div style="text-align: center; font-size: 1em">Welcome to Spring Social Media Clone home page.</div>
+          <div style="text-align: center">
+              <button class="btnCreatePost" (click)="goToCreatePost()">Create Post</button>
+          </div>
+      </div>
+      <div class="sidebaroptions">
+        <div style="text-align: center">
+          <button class="logout" (click)="logout()">Logout
+          </button>
+          <button class="pagebtn" (click)="goToPreviousPage()">
+            Previous Page
+          </button>
+          <button class="pagebtn" (click)="goToNextPage()">
+            Next Page
+          </button>
+        </div>
+      </div>
+      <div class="sidebaroptions">
+        <div style="text-align: center">
+          <button class="profile" (click)="goToProfile()">Profile page
+          </button>
+        </div>
+      </div>
+      <div class="sidebaroptions">
+        <form class="search-form" [formGroup]="searchForm">
+          <div class="form-group">
+            <input type="text" [formControlName]="'text'" class="form-control" style="margin-top: 5px"
+              placeholder="Search User" (input)="search()"> 
+          </div>
+        </form>
+      </div>
+      <div *ngFor="let user of searchedUsers">
+        <a [routerLink] = "['/users/', user.username]" >{{user.username}}</a>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div *ngFor="let req of requests">
+    <div class="sidebaroptions">
+      <div style="text-align: center">
+        <p>{{req.senderName}}</p>          
+        <button class="pagebtn" (click)="acceptRequest(req)">
+          Accept
+        </button>
+        <button class="pagebtn" (click)="rejectRequest(req)">
+          Reject
+        </button>
+      </div>
+    </div>
+  </div>

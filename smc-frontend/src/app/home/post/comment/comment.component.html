@@ -1,0 +1,35 @@
+<button *ngIf="!showCommentsField" class="showcomment"(click)="showComments()">Show Comments
+</button>
+<button *ngIf="showCommentsField" class="showcomment"(click)="showComments()">Hide Comments
+</button>
+<div  *ngIf="showCommentsField">
+  <div style="margin-top: 10px;" *ngFor="let comment of comments">
+    <div class="comment">
+      <div>
+        Comments
+        <a (click)="deleteComment(comment)" class="pull-right text-danger">
+          <i class="fa fa-trash-o"></i>
+        </a>
+      </div>
+      <div class="username">
+        <a [routerLink]="['/users/',comment.user]">{{comment.user}}</a>
+      </div>
+      <div>
+        <p>{{comment.text}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div>
+  <p>comments work {{currentPost.body.text}}</p>
+</div> -->
+
+<div class="post-comment">
+  <form [formGroup]="commentForm">
+    <div>
+      <textarea [formControlName]="'text'" placeholder="Write A Comment"></textarea>
+    </div>
+    <button class="btnCommments" (click)="postComment()">Comment</button>
+  </form>
+</div>
+  

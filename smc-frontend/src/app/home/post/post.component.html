@@ -1,0 +1,58 @@
+<div class="col-md-11">
+  <div class="user-name">
+    <a [routerLink] = "['/users/', post.username]"  class="username">{{post.username}}</a>
+  </div>
+  <div>
+    <div *ngIf="currentUser.username === post.username" >
+      <a (click)="delete()" class="pull-right text-danger">
+        <i class="fa fa-trash-o"></i>
+      </a>
+    </div>
+    <p>{{post.date | date: 'medium'}}</p>
+    <p class="post-text">{{post.body.text}}</p>
+    <img *ngIf="post.body.image !== null" src= {{post.body.image}} width="320" height="240">
+    <video *ngIf="post.body.video !== null" width="320" height="240" controls>
+      <source src={{post.body.video}}>
+    </video>
+    <p>
+      Likes({{likeCount}})
+      Comments({{commentCount}})
+    </p>
+    <button *ngIf="showLike" class="like" (click)="like()">Like
+    </button>
+    <button *ngIf="!showLike" class="like" (click)="dislike()">Dislike
+    </button>
+    <app-comment [currentPost]="post" (addedComment)="addedAComment()" (deletedComment)="deletedAComment()"></app-comment>
+    <!-- <button *ngIf="!showCommentsField" class="showcomment"(click)="showComments()">Show Comments
+    </button>
+    <button *ngIf="showCommentsField" class="showcomment"(click)="showComments()">Hide Comments
+    </button> -->
+    <!-- <div class="post-comment">
+      <form [formGroup]="commentForm">
+        <div>
+          <textarea [formControlName]="'text'" placeholder="Write A Comment"></textarea>
+        </div>
+        <button class="btnCommments" (click)="postComment()">Comment</button>
+      </form>
+    </div> -->
+    <!-- <div class="comments" *ngIf="post.comments.length > 0 && showCommentsField">
+      Comments
+      <div style="margin-top: 10px;" *ngFor="let comment of post.comments">
+        <app-comment [currentPost]="post"></app-comment>
+        <div class="comment">
+          <div *ngIf="currentUser.username === comment.user" >
+            <a (click)="deleteComment(comment.commentId)" class="pull-right text-danger">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+          <div class="username">
+            <a [routerLink]="['/users/',comment.user]">{{comment.user}}</a>
+          </div>
+          <div>
+            <p>{{comment.text}}</p>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>
